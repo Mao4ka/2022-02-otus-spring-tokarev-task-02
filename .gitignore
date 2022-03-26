@@ -1,0 +1,37 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+/.idea
+
+.vscode
+.vs
+.idea/**
+*.gitkeep
+node_modules/
+build/
+*.iml
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+src/**/*.js
+src/**/*.js.map
+typings
+dist
+!pipeline/dist
+!.idea/runConfigurations/
+!.idea/runConfigurations/**
+**/target/**
+**/__snapshots__/**
+coverage
+yarn.lock
+.npmrc
+.yarnrc
