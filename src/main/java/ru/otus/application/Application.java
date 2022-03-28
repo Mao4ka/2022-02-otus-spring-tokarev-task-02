@@ -2,13 +2,16 @@ package ru.otus.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.otus.AnswerType;
 import ru.otus.dao.entity.Quest;
-import ru.otus.enterprise.IOQuestionnaireImpl;
+import ru.otus.dao.repository.QuestRepository;
 import ru.otus.enterprise.InputQuestionnaire;
 import ru.otus.enterprise.OutputQuestionnaire;
+import ru.otus.service.IntermediateMessageService;
 import ru.otus.service.QuestionnaireService;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Service
@@ -16,17 +19,36 @@ import java.util.List;
 public class Application {
 
 
+    private final QuestRepository questRepository;
     private final QuestionnaireService questionnaireService;
     private final OutputQuestionnaire outputQuestionnaire;
+    private final InputQuestionnaire inputQuestionnaire;
+    private final IntermediateMessageService intermediateMessageService;
 
     public void studentSurvey() {
-
         String studentName = outputQuestionnaire.greeting();
-
-        int rightAnswersCount = questionnaireService.processQuestionnaire();
-
+        int rightAnswersCount = processQuestionnaire();
         outputQuestionnaire.printOutputMessage(studentName, rightAnswersCount);
+    }
 
+    public int processQuestionnaire() {
+        List<Quest> questionnaire = questRepository.getQuestionnaire();
+        AtomicInteger rightAnswerCount = new AtomicInteger();
+
+        questionnaire.forEach(quest -> processQuest(rightAnswerCount, quest));
+
+        return rightAnswerCount.get();
+    }
+
+    private void processQuest(AtomicInteger rightAnswerCount, Quest quest) {
+        outputQuestionnaire.printQuestionnaire(quest);
+        System.out.print("Your choice: ");
+
+        String userData = inputQuestionnaire.getUserInput();
+
+        AnswerType answerType = questionnaireService.getAnswerType(quest, userData);
+        intermediateMessageService.commentUserAnswer(answerType);
+        rightAnswerCount.addAndGet(answerType.equals(AnswerType.correctAnswer) ? 1 : 0);
     }
 
 }
