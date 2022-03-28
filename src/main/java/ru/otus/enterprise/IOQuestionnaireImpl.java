@@ -12,24 +12,25 @@ public class IOQuestionnaireImpl implements InputQuestionnaire, OutputQuestionna
     private static final int MINIMUM_ACCEPTABLE_CORRECT_ANSWERS_COUNT = 4;
 
     @Override
+    public String getUserInput() {
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
+    }
+
+    @Override
     public String greeting() {
         outputString("It's application for checking you erudition, premonition, foresight etc.");
         outputString("Please introduce yourself: \n");
 
-        String studentName = getUserInput();
+        String userName = getUserInput();
 
-        outputString("\nHello, " + studentName + "!\n");
-        outputString("Now it is necessary to check your erudition.");
-        outputString("After each question write the correct answer option number. From 1 till 4 (for the particularly stupid...)");
+        outputString("\nHello, " + userName + "!\n");
+        outputString("Now it is necessary to check your erudition and foresight.");
+        outputString("After each question write the correct answer option number. From 1 till 4. " +
+                "\n(aside) For the particularly stupid...");
         outputString("\nStart testing:");
 
-        return studentName;
-    }
-
-    @Override
-    public String getUserInput() {
-        Scanner sc = new Scanner(System.in);
-        return sc.next();
+        return userName;
     }
 
     @Override
