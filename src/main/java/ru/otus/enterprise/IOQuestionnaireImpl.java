@@ -44,7 +44,7 @@ public class IOQuestionnaireImpl implements InputQuestionnaire, OutputQuestionna
 
     @Override
     public void printOutputMessage(String studentName, int rightAnswersCount) {
-        outputString("\nCount of your right answers = " + rightAnswersCount);
+        outputString("End of testing!\nCount of your right answers = " + rightAnswersCount);
 
         if (rightAnswersCount < MINIMUM_ACCEPTABLE_CORRECT_ANSWERS_COUNT) {
             outputString(studentName + ", you are {Balbes Men}! Go and study {MatChast}! 0_o");

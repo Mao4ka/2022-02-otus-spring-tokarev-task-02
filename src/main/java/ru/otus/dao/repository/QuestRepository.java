@@ -17,16 +17,11 @@ import java.util.stream.Collectors;
 @Setter
 public class QuestRepository {
 
-    private String LINE_SEPARATOR = ",";
-
-    // ToDo  в пропертю его потом
-    private String fileName = "questionnaire.csv";
-
-    public List<Quest> getQuestionnaire() {
+    public List<Quest> getQuestionnaire(String fileName, String lineSeparator) {
         List<Quest> quests = new ArrayList<>();
 
         try {
-            Map<Integer,List<String>> questMap = FileUtils.getCsvWithTitle(fileName, LINE_SEPARATOR);
+            Map<Integer,List<String>> questMap = FileUtils.getCsvWithTitle(fileName, lineSeparator);
 
             quests = questMap.values().stream()
                     .map(parsedLine -> new Quest(parsedLine.get(0),

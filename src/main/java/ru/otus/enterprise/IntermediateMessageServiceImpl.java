@@ -1,9 +1,8 @@
-package ru.otus.service;
+package ru.otus.enterprise;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.AnswerType;
-import ru.otus.enterprise.OutputQuestionnaire;
 
 @Service
 @RequiredArgsConstructor

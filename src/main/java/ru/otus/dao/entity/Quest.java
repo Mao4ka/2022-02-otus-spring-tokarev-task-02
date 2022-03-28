@@ -8,7 +8,6 @@ import java.util.List;
 @Getter
 @RequiredArgsConstructor
 public class Quest {
-
     private final String question;
     private final List<String> answers;
     private final String rightAnswer;

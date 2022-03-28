@@ -17,6 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Ыть!")
 class QuestRepositoryTest {
 
+    private static final String RESOURCE_FILE_NAME = "questionnaire.csv";
+    private static final String LINE_SEPARATOR = ",";
+
     //@Autowired
     private final QuestRepository questRepository = new QuestRepository();
 
@@ -25,7 +28,7 @@ class QuestRepositoryTest {
     @Test
     public void testGetQuestionnaire() {
 
-        List<Quest> quest = questRepository.getQuestionnaire();
+        List<Quest> quest = questRepository.getQuestionnaire(RESOURCE_FILE_NAME, LINE_SEPARATOR);
 
         assertThat(5).isEqualTo(quest.size());
     }
