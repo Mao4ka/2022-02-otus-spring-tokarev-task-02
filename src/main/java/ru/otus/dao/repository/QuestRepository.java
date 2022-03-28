@@ -1,7 +1,6 @@
 package ru.otus.dao.repository;
 
 
-import lombok.Setter;
 import org.springframework.stereotype.Repository;
 import ru.otus.dao.entity.Quest;
 import ru.otus.utils.FileUtils;
@@ -14,21 +13,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
-@Setter
 public class QuestRepository {
 
     public List<Quest> getQuestionnaire(String fileName, String lineSeparator) {
         List<Quest> quests = new ArrayList<>();
 
         try {
-            Map<Integer,List<String>> questMap = FileUtils.getCsvWithTitle(fileName, lineSeparator);
+            Map<Integer, List<String>> questMap = FileUtils.getCsvWithTitle(fileName, lineSeparator);
 
             quests = questMap.values().stream()
                     .map(parsedLine -> new Quest(parsedLine.get(0),
                             Arrays.asList(parsedLine.get(1), parsedLine.get(2), parsedLine.get(3), parsedLine.get(4)),
                             parsedLine.get(5)))
                     .collect(Collectors.toList());
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
 
         return quests;
     }
