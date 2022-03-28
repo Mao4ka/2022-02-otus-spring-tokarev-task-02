@@ -33,7 +33,7 @@ public class Application {
         outputQuestionnaire.printOutputMessage(studentName, rightAnswersCount);
     }
 
-    public int processQuestionnaire() {
+    private int processQuestionnaire() {
         List<Quest> questionnaire = questRepository.getQuestionnaire(RESOURCE_FILE_NAME, LINE_SEPARATOR);
         AtomicInteger rightAnswerCount = new AtomicInteger();
 

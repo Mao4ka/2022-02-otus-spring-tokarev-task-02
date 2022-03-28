@@ -17,11 +17,9 @@ public class FileUtils {
 
         FileUtils fileUtils = new FileUtils();
         File csvFile = fileUtils.getFileFromResources(fileName);
-        //InputStream is = getFileFromResourceAsStream(fileName);
 
         if (csvFile.isFile()) {
             try (BufferedReader csvReader = new BufferedReader(new FileReader(csvFile))) {
-            //try (BufferedReader csvReader = new BufferedReader(new InputStreamReader(is))) {
                 String row;
                 int i = 0;
                 while ((row = csvReader.readLine()) != null) {
@@ -55,7 +53,6 @@ public class FileUtils {
 
     private File getFileFromResources(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
-                //FileUtils.class.getClassLoader().getResource(fileName);
 
         URL resource = classLoader.getResource(  fileName);
         if (resource == null) {
